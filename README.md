@@ -44,9 +44,13 @@ Includes:
 - /usr/lib/libssl.so.3 and /usr/lib/libcrypto.so.3 for OpenSSL support
 ---------------------------------------------------------------------------------------------------------------
 
-🖥️ Runtime Flow
+🖥️ Runtime Flow:
 sensor_simulator (IPC) --> sensor_receiver (AES+CMAC) --> TCP --> aes_server.py (remote PC)
--------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+🔁 Error Handling:
+- If the connection to the server fails, it retries up to 5 times before exiting.
+- If CMAC authentication fails on the PC, the message is discarded and not decrypted.
+-----------------------------------------------------------------------------------------------------------------
 How to run:
 on QNX VM 
 - run: sensor_receiver &
